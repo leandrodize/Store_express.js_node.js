@@ -28,13 +28,20 @@ app.get('/products',(request,response)=>{
   ])
 })
 
-app.get('/products/:id',(require,response)=>{
-  const {id} = require.params;
+app.get('/products/:id',(request,response)=>{
+  const {id} = request.params;
   response.json({
     id,
     Dress:450,
     Blouse: 100,
     Shoes:700,
+  })
+})
+app.get('/home/:homeID/products/:productsID',(request,response)=>{
+  const {homeID, productsID} = request.params;
+  response.json({
+    homeID,
+    productsID,
   })
 })
 
