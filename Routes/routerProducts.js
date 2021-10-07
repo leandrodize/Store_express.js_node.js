@@ -5,7 +5,8 @@ const router = express.Router();
 router.get('/',(request,response)=>{
   const products = [];
   const {limitProducts} = request.query;
-  for (i=0; i<limitProducts; i++){
+  const defaultLimit = limitProducts || 5;
+  for (i=0; i<defaultLimit; i++){
     products.push({
       name: faker.commerce.productName(),
       price: parseInt(faker.commerce.price()),
@@ -42,6 +43,14 @@ router.get('/:girls',(request,response)=>{
     })
   }
   response.json(productsGirls)
+})
+
+router.post('/', (request, response)=>{
+  const body = request.body;
+  response.json({
+    message: "POST OK",
+    data: body
+  })
 })
 
  //export module router /products
