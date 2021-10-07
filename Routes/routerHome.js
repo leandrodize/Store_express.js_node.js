@@ -13,27 +13,23 @@ router.get ('/privacy', (request,response)=> {
   response.send( 'Read Privacy Politic')
 })
 
-router.get('/:support', (request,response)=>{
+router.get('/beginning', (request, response) => {
+  response.json({
+    option1 : faker.address.cardinalDirection(),
+    option2 : faker.address.cardinalDirection()
+  })
+})
+
+router.get('/support', (request,response)=>{
   const listNumber = []
-  const {support} = request.params;
   for (i =0; i<4; i++){
     listNumber.push({
-      support,
       number: faker.phone.phoneNumber(),
       adress : faker.address.city(),
     })
   }
   response.json(listNumber)
-});
-
-router.get('/:beginning', (request, response) => {
-  const {beginning} = request.params;
-  response.json({
-    beginning,
-    option1 : faker.address.cardinalDirection(),
-    option2 : faker.address.cardinalDirection(),
-  })
-});
+})
 
 
 module.exports = router;
