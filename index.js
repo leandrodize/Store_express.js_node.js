@@ -8,16 +8,33 @@ app.get('/',(request,response) =>{
 
 app.get('/home',(request,response)=>{
   response.json({
-    "menu":"Inicio",
-    "contactenos":"Contacto"
+    menu:"Inicio",
+    contactenos:"Contacto"
   })
 })
 
 app.get('/products',(request,response)=>{
+  response.json([
+    {
+      Tshirt:150,
+      Pole:25,
+      Sneakers:300
+    },
+    {
+      Dress:450,
+      Blouse: 100,
+      Shoes:700,
+    }
+  ])
+})
+
+app.get('/products/:id',(require,response)=>{
+  const {id} = require.params;
   response.json({
-    "Polera":150,
-    "Polo":25,
-    "Zapatillas":300
+    id,
+    Dress:450,
+    Blouse: 100,
+    Shoes:700,
   })
 })
 
