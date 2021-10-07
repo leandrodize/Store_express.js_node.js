@@ -1,0 +1,28 @@
+{
+  "name": "store_ecommerce",
+  "version": "1.0.0",
+  "description": "Store in Node.js + express.js",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/leandrodize/Store_express.js_node.js.git"
+  },
+  "author": "Leandro Diaz <juanca930.jcdz@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leandrodize/Store_express.js_node.js/issues"
+  },
+  "homepage": "https://github.com/leandrodize/Store_express.js_node.js#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1"
+  }
+}
