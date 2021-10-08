@@ -5,15 +5,34 @@ const serviceProducts = require('../Services/servicesProducts');
 const service = new serviceProducts();
 
 //Use serviceProdcuts and methods
-router.get('/',(request,response)=>{
-  const products = service.find();
+router.get('/',async (request,response)=>{
+  const products = await service.findAll();
   response.json(products);
 });
 
-router.get('/:id', (request, response) =>{
+router.get('/:id', async (request, response) =>{
   const {id} = request.params;
-  const product = service.findOne(id);
+  const product = await service.findOne(id);
   response.json(product);
+})
+
+router.post('/', async (request, response) => {
+  const body = request.body;
+  const newProduct = await service.create(body);
+  response.status(201).json(newProduct);
+})
+
+router.patch('/:id', async (request, response)=>{
+  const {id} = request.params;
+  const body = request.body;
+  const updateProduct = await service.update(id, body);
+  response.status(201).json(updateProduct);
+})
+
+router.delete('/:id', async (request, response) =>{
+ const {id}  = request.params;
+ const deleteProduct = await service.delete(id);
+ response.status(201).json(deleteProduct);
 })
 //*************************************/
 
