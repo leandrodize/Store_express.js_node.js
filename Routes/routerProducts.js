@@ -1,20 +1,21 @@
 const express = require('express');
 const faker = require('faker');
 const router = express.Router();
+const serviceProducts = require('../Services/servicesProducts');
+const service = new serviceProducts();
 
+//Use serviceProdcuts and methods
 router.get('/',(request,response)=>{
-  const products = [];
-  const {limitProducts} = request.query;
-  const defaultLimit = limitProducts || 5;
-  for (i=0; i<defaultLimit; i++){
-    products.push({
-      name: faker.commerce.productName(),
-      price: parseInt(faker.commerce.price()),
-      image : faker.image.imageUrl(),
-    })
-  }
-  response.json(products)
+  const products = service.find();
+  response.json(products);
+});
+
+router.get('/:id', (request, response) =>{
+  const {id} = request.params;
+  const product = service.findOne(id);
+  response.json(product);
 })
+//*************************************/
 
 router.get('/categorys', (request,response) =>{
   response.json({
