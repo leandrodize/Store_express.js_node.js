@@ -4,7 +4,7 @@ const router = express.Router();
 const serviceProducts = require('../Services/servicesProducts');
 const service = new serviceProducts();
 
-//Use serviceProdcuts and methods
+//****Use serviceProdcuts and methods*****//
 router.get('/',async (request,response)=>{
   const products = await service.findAll();
   response.json(products);
@@ -34,7 +34,7 @@ router.delete('/:id', async (request, response) =>{
  const deleteProduct = await service.delete(id);
  response.status(201).json(deleteProduct);
 })
-//*************************************/
+//*********************************************//
 
 router.get('/categorys', (request,response) =>{
   response.json({
