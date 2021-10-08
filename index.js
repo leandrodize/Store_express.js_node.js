@@ -9,6 +9,7 @@ app.get('/',(request,response)=>{
   response.json({
     products: "products",
     home:"home",
+    costumers: "costumers"
   })
 });
 

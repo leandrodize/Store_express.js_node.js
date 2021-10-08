@@ -45,6 +45,7 @@ router.get('/:girls',(request,response)=>{
   response.json(productsGirls)
 })
 
+//Method POST
 router.post('/', (request, response)=>{
   const body = request.body;
   response.json({

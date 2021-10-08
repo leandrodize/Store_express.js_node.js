@@ -31,5 +31,13 @@ router.get('/support', (request,response)=>{
   response.json(listNumber)
 })
 
+//method POST
+router.post('/support',(request, response) =>{
+  const body = request.body;
+  response.json({
+    message: "Post OK",
+    data: body
+  })
+})
 
 module.exports = router;

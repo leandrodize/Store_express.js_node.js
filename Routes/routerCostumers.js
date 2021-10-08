@@ -21,6 +21,15 @@ router.get('/news', (request, response) =>{
   response.json(newcostumers);
 })
 
+//Method POST /news
+router.post('/news', (request, response) =>{
+  const body = request.body;
+  response.json({
+    message: "Post New Costumer OK",
+    data: body
+  })
+})
+
 router.get('/news/:boys', (request, response) =>{
   const {boys}  = request.params;
   const boysNewCostumer = [];
@@ -44,6 +53,24 @@ router.get('/news/:girls', (request, response) =>{
   }
   response.json(girlsNewCostumers)
 })
+//Method PATCH /news/:girls/:id
+router.patch('/news/:girls/:id', (request, response) =>{
+  const {id} = request.params;
+  const body = request.body;
+  response.json({
+    message: "Update OK",
+    data: body,
+    id,
+  })
+})
+//Method DELETE /news/:girls/:id
+router.delete('/news/:girls/:id', (request, response) =>{
+  const {id} = request.params;
+  response.json({
+    message: "Delete OK",
+    id
+  })
+})
 
 router.get('/old' ,(request, response) =>{
   const oldCostumers = [];
@@ -54,6 +81,14 @@ router.get('/old' ,(request, response) =>{
     })
   }
   response.json(oldCostumers);
+})
+//Method POST /old
+router.post('/old', (request, response)=>{
+  const body = request.body;
+  response.json({
+    message: "Post Old Costumer OK",
+    data: body
+  })
 })
 
 router.get ('old/:oldboys' , (request, response) =>{
