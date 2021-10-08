@@ -21,10 +21,10 @@ router.get('/news', (request, response) =>{
   response.json(newcostumers);
 })
 
-//Method POST /news
+//Method POST /news + response.status(201)
 router.post('/news', (request, response) =>{
   const body = request.body;
-  response.json({
+  response.status(201).json({
     message: "Post New Costumer OK",
     data: body
   })
@@ -53,15 +53,21 @@ router.get('/news/:girls', (request, response) =>{
   }
   response.json(girlsNewCostumers)
 })
-//Method PATCH /news/:girls/:id
+//Method PATCH /news/:girls/:id + response.status(404).json()
 router.patch('/news/:girls/:id', (request, response) =>{
   const {id} = request.params;
   const body = request.body;
-  response.json({
-    message: "Update OK",
-    data: body,
-    id,
-  })
+  if(id === "7542"){
+    response.status(404).json({
+      message: "NOT FOUND"
+    })
+  }else{
+    response.status(201).json({
+      message: "Update OK",
+      data: body,
+      id,
+    })
+  }
 })
 //Method DELETE /news/:girls/:id
 router.delete('/news/:girls/:id', (request, response) =>{
