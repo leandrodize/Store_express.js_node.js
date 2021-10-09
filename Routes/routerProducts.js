@@ -3,6 +3,8 @@ const faker = require('faker');
 const router = express.Router();
 const serviceProducts = require('../Services/servicesProducts');
 const service = new serviceProducts();
+const validatorHandler = require('../Middlewares/validator.handler');
+const {getProductsSchema, createProductsSchema, updateProductsSchema} = require('../schemas/schemaProducts');
 
 //****Use serviceProdcuts and methods*****//
 router.get('/',async (request,response)=>{
@@ -10,19 +12,19 @@ router.get('/',async (request,response)=>{
   response.json(products);
 });
 
-router.get('/:id', async (request, response) =>{
+router.get('/:id', validatorHandler(getProductsSchema, 'params'),async (request, response) =>{
   const {id} = request.params;
   const product = await service.findOne(id);
   response.json(product);
 })
 
-router.post('/', async (request, response) => {
+router.post('/', validatorHandler(createProductsSchema, 'body'), async (request, response) => {
   const body = request.body;
   const newProduct = await service.create(body);
   response.status(201).json(newProduct);
 })
 
-router.patch('/:id', async (request, response)=>{
+router.patch('/:id',validatorHandler(updateProductsSchema, 'params'),validatorHandler(updateProductsSchema, 'body'), async (request, response)=>{
   const {id} = request.params;
   const body = request.body;
   const updateProduct = await service.update(id, body);
